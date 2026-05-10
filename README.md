@@ -1,4 +1,4 @@
-# SaaS Foundations
+# SAAS Foundations
 
 Build the foundations for a Software as a Service business by leveraging Django, Tailwind, htmx, Neon Postgres, Redis, and more.
 
@@ -19,7 +19,7 @@ The goal of this project is to learn how to create a reusable foundation for bui
 ```bash
 mkdir -p ~/dev/saas
 cd ~/dev/saas
-git clone https://github.com/codingforentrepreneurs/SaaS-Foundations .
+git clone https://github.com/daya-2619/SAAS-Foundations .
 ```
 
 ### Create Virtual Environment
@@ -38,7 +38,7 @@ c:\Python312\python.exe -m venv venv
 ```
 
 ### Install Requirements with Rav
-[Rav](https://github.com/jmitchel3/rav) is a simple way to run commands and download static files (css, images, js, etc) from external sources.
+[Rav](https://github.com/daya-2619/rav) is a simple way to run commands and download static files (css, images, js, etc) from external sources.
 
 ```bash
 # with venv activated
@@ -124,7 +124,7 @@ Ready to roll! 🚀
 
 ### Useful Rav Commands
 
-Review the [rav.yaml](./rav.yaml) (or [rav](https://github.com/jmitchel3/rav) documentation) for available command shortcuts, here are some useful ones:
+Review the [rav.yaml](./rav.yaml) (or [rav](https://github.com/daya-2619/rav) documentation) for available command shortcuts, here are some useful ones:
 
 - `rav run install` - Install requirements based on `scripts.install`
 - `rav run install_dev` - Install requirements for development
@@ -142,10 +142,7 @@ Review the [rav.yaml](./rav.yaml) (or [rav](https://github.com/jmitchel3/rav) do
 - [] Remove Django Allauth-UI and Slippers. While these tools can be great, they have been causing more issues than they have been worth.
 - [] Docker Compose support for Postgres, Redis, and more.
 
-
 ### Changelog
-
-- 2025-09-02: 
   - Upgraded to Django 5.2
   - Added Slippers for better AllAuth UI Support
   - Implemented Rav to manage requirements and static files
