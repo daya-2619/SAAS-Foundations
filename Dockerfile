@@ -1,87 +1,51 @@
-# Set the python version as a build-time argument
-# with Python 3.12 as the default
-ARG PYTHON_VERSION=3.12-slim-bullseye
-FROM python:${PYTHON_VERSION}
+# syntax=docker/dockerfile:1
 
-# Create a virtual environment
-RUN python -m venv /opt/venv
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/go/dockerfile-reference/
 
-# Set the virtual environment as the current location
-ENV PATH=/opt/venv/bin:$PATH
+# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-# Upgrade pip
-RUN pip install --upgrade pip
+ARG PYTHON_VERSION=3.13.7
+FROM python:${PYTHON_VERSION}-slim as base
 
-# Set Python-related environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Prevents Python from writing pyc files.
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Install os dependencies for our mini vm
-RUN apt-get update && apt-get install -y \
-    # for postgres
-    libpq-dev \
-    # for Pillow
-    libjpeg-dev \
-    # for CairoSVG
-    libcairo2 \
-    # other
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+# Keeps Python from buffering stdout and stderr to avoid situations where
+# the application crashes without emitting any logs due to buffering.
+ENV PYTHONUNBUFFERED=1
 
-# Create the mini vm's code directory
-RUN mkdir -p /code
+WORKDIR /app
 
-# Set the working directory to that same code directory
-WORKDIR /code
+# Create a non-privileged user that the app will run under.
+# See https://docs.docker.com/go/dockerfile-user-best-practices/
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
 
-# Copy the requirements file into the container
-COPY requirements.txt /tmp/requirements.txt
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
+# Leverage a bind mount to requirements.txt to avoid having to copy them into
+# into this layer.
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
 
-# copy the project code into the container's working directory
-COPY ./src /code
+# Switch to the non-privileged user to run the application.
+USER appuser
 
-# Install the Python project requirements
-RUN pip install --upgrade pip
-RUN pip install -r /tmp/requirements.txt
-RUN pip install gunicorn rav --upgrade
+# Copy the source code into the container.
+COPY . .
 
-ARG DJANGO_SECRET_KEY
-ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+# Expose the port that the application listens on.
+EXPOSE 8000
 
-ARG DJANGO_DEBUG=0
-ENV DJANGO_DEBUG=${DJANGO_DEBUG}
-
-
-COPY ./rav.yaml /tmp/rav.yaml
-RUN rav download staticfiles_prod -f /tmp/rav.yaml
-
-# database isn't available during build
-# run any other commands that do not need the database
-# such as:
-# RUN python manage.py vendor_pull
-RUN python manage.py collectstatic --noinput
-# whitenoise -> s3
-
-# set the Django default project name
-ARG PROJ_NAME="cfehome"
-
-# create a bash script to run the Django project
-# this script will execute at runtime when
-# the container starts and the database is available
-RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
-    printf "RUN_PORT=\"\${PORT:-8000}\"\n\n" >> ./paracord_runner.sh && \
-    printf "python manage.py migrate --no-input\n" >> ./paracord_runner.sh && \
-    printf "gunicorn ${PROJ_NAME}.wsgi:application --bind \"0.0.0.0:\$RUN_PORT\"\n" >> ./paracord_runner.sh
-
-# make the bash script executable
-RUN chmod +x paracord_runner.sh
-
-# Clean up apt cache to reduce image size
-RUN apt-get remove --purge -y \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Run the Django project via the runtime script
-# when the container starts
-CMD ./paracord_runner.sh
+# Run the application.
+CMD gunicorn 'src.cfehome.wsgi' --bind=0.0.0.0:8000

@@ -27,6 +27,7 @@ from .views import (
     user_only_view,
     staff_only_view
 )
+from dashboard.views import dashboard_stats_api
 
 urlpatterns = [
     path("", landing_views.landing_dashboard_page_view, name='home'),
@@ -54,5 +55,7 @@ urlpatterns = [
     path('protected/staff-only/', staff_only_view),
     path('protected/', pw_protected_view),
     path('profiles/', include('profiles.urls')),
+    path('api/logs/', include('log_aggregator.urls')),
+    path('api/dashboard/stats/', dashboard_stats_api, name='dashboard-stats-api'),
     path("admin/", admin.site.urls),
 ]

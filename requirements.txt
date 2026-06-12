@@ -10,3 +10,5 @@ django-allauth-ui==1.5.3
 django-widget-tweaks
 stripe
 slippers
+celery
+redis
