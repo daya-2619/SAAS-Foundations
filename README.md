@@ -21,8 +21,8 @@ LogCenter is a distributed, high-throughput logging pipeline designed to ingest,
 ### Clone & Setup
 
 ```bash
-git clone https://github.com/daya-2619/SAAS-Foundations .
-cd SAAS-Foundations
+git clone https://github.com/daya-2619/LogCenter-Real-Time-Log-Aggregation-Anomaly-Detection .
+cd LogCenter-Real-Time-Log-Aggregation-Anomaly-Detection
 ```
 
 ### Create Virtual Environment
