@@ -12,3 +12,6 @@ stripe
 slippers
 celery
 redis
+confluent-kafka
+clickhouse-connect
+django-prometheus

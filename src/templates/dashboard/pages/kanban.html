@@ -1,0 +1,20 @@
+{% extends 'dashboard/base.html' %}
+
+{% block head_title %}{{ title }} - {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<div class="px-4 py-8 max-w-7xl mx-auto w-full">
+    <div class="mb-8">
+        <h2 class="text-3xl font-semibold tracking-tight text-slate-900">{{ title }}</h2>
+        <p class="text-sm text-slate-500 mt-1">Organize your tasks efficiently.</p>
+    </div>
+    
+    <div class="bg-white border border-slate-200 rounded-xl p-16 text-center shadow-sm">
+        <div class="w-16 h-16 bg-slate-50 border border-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+        </div>
+        <h3 class="text-xl font-semibold text-slate-900">Kanban Board Syncing</h3>
+        <p class="text-slate-500 mt-2 max-w-sm mx-auto text-sm">The interactive drag-and-drop kanban board is coming soon.</p>
+    </div>
+</div>
+{% endblock content %}

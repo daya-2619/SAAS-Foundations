@@ -1,11 +1,11 @@
 <!-- Sidebar -->
 
 <aside
-class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+class="fixed top-24 left-6 z-40 w-64 h-[calc(100vh-7rem)] transition-transform -translate-x-full md:translate-x-0 bg-white/60 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-3xl overflow-hidden flex flex-col"
 aria-label="Sidenav"
 id="drawer-navigation"
 >
-<div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+<div class="overflow-y-auto py-6 px-4 flex-1 custom-scrollbar">
   <form action="#" method="GET" class="md:hidden mb-2">
     <label for="sidebar-search" class="sr-only">Search</label>
     <div class="relative">
@@ -37,12 +37,12 @@ id="drawer-navigation"
   <ul class="space-y-2">
     <li>
       <a
-        href="#"
-        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        href="{% url 'home' %}"
+        class="flex items-center p-2 text-base font-medium text-slate-900 rounded-lg dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 group"
       >
         <svg
           aria-hidden="true"
-          class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          class="w-6 h-6 text-slate-400 transition duration-75 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -93,22 +93,22 @@ id="drawer-navigation"
       <ul id="dropdown-pages" class="hidden py-2 space-y-2">
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'dashboard:settings' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Settings</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'dashboard:kanban' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Kanban</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'dashboard:calendar' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Calendar</a
           >
         </li>
@@ -154,22 +154,22 @@ id="drawer-navigation"
       <ul id="dropdown-sales" class="hidden py-2 space-y-2">
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'dashboard:products' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Products</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'user_subscription' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Billing</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'dashboard:invoice' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Invoice</a
           >
         </li>
@@ -177,12 +177,12 @@ id="drawer-navigation"
     </li>
     <li>
       <a
-        href="#"
-        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        href="{% url 'dashboard:messages' %}"
+        class="flex items-center p-2 text-base font-medium text-slate-900 rounded-lg dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 group"
       >
         <svg
           aria-hidden="true"
-          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          class="flex-shrink-0 w-6 h-6 text-slate-400 transition duration-75 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +196,7 @@ id="drawer-navigation"
         </svg>
         <span class="flex-1 ml-3 whitespace-nowrap">Messages</span>
         <span
-          class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-primary-800 bg-primary-100 dark:bg-primary-200 dark:text-primary-800"
+          class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-emerald-800 bg-emerald-100 dark:bg-primary-200 dark:text-primary-800"
         >
           4
         </span>
@@ -242,22 +242,22 @@ id="drawer-navigation"
       <ul id="dropdown-authentication" class="hidden py-2 space-y-2">
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'account_login' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Sign In</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'account_signup' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Sign Up</a
           >
         </li>
         <li>
           <a
-            href="#"
-            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            href="{% url 'account_reset_password' %}"
+            class="flex items-center p-2 pl-11 w-full text-base font-medium text-slate-700 rounded-lg transition duration-75 group hover:bg-slate-100 dark:text-white dark:hover:bg-gray-700"
             >Forgot Password</a
           >
         </li>
@@ -269,12 +269,12 @@ id="drawer-navigation"
   >
     <li>
       <a
-        href="#"
-        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+        href="{% url 'dashboard:docs' %}"
+        class="flex items-center p-2 text-base font-medium text-slate-900 rounded-lg transition duration-75 hover:bg-slate-100 dark:hover:bg-gray-700 dark:text-white group"
       >
         <svg
           aria-hidden="true"
-          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          class="flex-shrink-0 w-6 h-6 text-slate-400 transition duration-75 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -291,12 +291,12 @@ id="drawer-navigation"
     </li>
     <li>
       <a
-        href="#"
-        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+        href="{% url 'dashboard:components' %}"
+        class="flex items-center p-2 text-base font-medium text-slate-900 rounded-lg transition duration-75 hover:bg-slate-100 dark:hover:bg-gray-700 dark:text-white group"
       >
         <svg
           aria-hidden="true"
-          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          class="flex-shrink-0 w-6 h-6 text-slate-400 transition duration-75 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -310,12 +310,12 @@ id="drawer-navigation"
     </li>
     <li>
       <a
-        href="#"
-        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+        href="{% url 'dashboard:help' %}"
+        class="flex items-center p-2 text-base font-medium text-slate-900 rounded-lg transition duration-75 hover:bg-slate-100 dark:hover:bg-gray-700 dark:text-white group"
       >
         <svg
           aria-hidden="true"
-          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          class="flex-shrink-0 w-6 h-6 text-slate-400 transition duration-75 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -332,7 +332,7 @@ id="drawer-navigation"
   </ul>
 </div>
 <div
-  class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20"
+  class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white/40 backdrop-blur-md border-t border-white/40 z-20"
 >
   <a
     href="#"

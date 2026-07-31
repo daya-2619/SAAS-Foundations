@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block head_title %}SaaS{% endblock head_title %}</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     {% include 'base/css.html' %}
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body>
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+<body class="antialiased text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative min-h-screen bg-slate-50">
+    <!-- Premium Top Glow Background -->
+    <div class="absolute inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
+    <div>
         {% include 'dashboard/nav.html' %}
         {% include 'dashboard/sidebar.html' %}
 
-        <main class="p-4 md:ml-64 h-auto pt-20">
-        {% include 'base/messages.html' with messages=messages %}
-        {% block content %}
-        {% endblock content %}
-    </main>
-
+        <main class="p-4 md:pl-[300px] md:pr-8 h-auto pt-28 min-h-screen flex flex-col max-w-[1800px] mx-auto w-full">
+            {% include 'base/messages.html' with messages=messages %}
+            <div class="flex-grow">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
     </div>
     {% include 'base/js.html' %}
 </body>

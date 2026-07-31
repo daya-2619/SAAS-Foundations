@@ -1,10 +1,18 @@
 {% if messages %}
-    <div>
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col space-y-3 pointer-events-none">
         {% for message in messages %}
-            <div class="flex items-center px-4 py-3 text-sm font-bold text-white bg-blue-500"
+            <div class="flex items-center px-5 py-4 text-sm font-medium text-slate-700 bg-white/80 backdrop-blur-xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl animate-fade-in-up pointer-events-auto"
                     role="alert">
+                <svg class="w-5 h-5 mr-3 {% if message.tags == 'error' %}text-rose-500{% else %}text-emerald-500{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <p>{{ message }}</p>
             </div>
         {% endfor %}
     </div>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
 {% endif %}

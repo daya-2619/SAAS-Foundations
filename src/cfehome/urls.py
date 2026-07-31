@@ -27,7 +27,7 @@ from .views import (
     user_only_view,
     staff_only_view
 )
-from dashboard.views import dashboard_stats_api
+from dashboard.views import dashboard_stats_api, dashboard_logs_api
 
 urlpatterns = [
     path("", landing_views.landing_dashboard_page_view, name='home'),
@@ -57,5 +57,8 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('api/logs/', include('log_aggregator.urls')),
     path('api/dashboard/stats/', dashboard_stats_api, name='dashboard-stats-api'),
+    path('api/dashboard/logs/', dashboard_logs_api, name='dashboard-logs-api'),
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
+    path('', include('django_prometheus.urls')),
     path("admin/", admin.site.urls),
 ]
